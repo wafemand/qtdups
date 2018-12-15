@@ -4,7 +4,7 @@ set(TARGET_NAME qtdups)
 project(${TARGET_NAME})
 
 set(CMAKE_CXX_STANDARD 17)
-add_compile_options(--std=c++17 -g -pthread)
+add_compile_options(-Wall --std=c++17 -g -pthread)
 
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Network REQUIRED)

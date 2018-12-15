@@ -42,6 +42,7 @@ void MainWindow::handleStartButton() {
             "Select Directory for Scanning",
             QString(),
             QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+
     if (!currentRootPath.isEmpty()) {
         runFind(currentRootPath);
     }

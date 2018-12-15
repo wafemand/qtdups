@@ -156,7 +156,7 @@ private:
         }
     }
 
-    void iterateByTree(QTreeWidgetItem *item, std::function<void(QTreeWidgetItem *)> fun) {
+    void iterateByTree(QTreeWidgetItem *item, std::function<void(QTreeWidgetItem *)> const &fun) {
         if (item == nullptr) {
             return;
         }
