@@ -45,6 +45,9 @@ void QtDupsFinder::processFile(QFileInfo const &fileInfo) {
         if (curFileHolder.hasError) {
             continue;
         }
+        if (fileHolder.hasError){
+            break;
+        }
         cancellationPoint();
         if (equals(curFileHolder, fileHolder)){
             if (!curFileHolder.hasDup) {
@@ -57,12 +60,12 @@ void QtDupsFinder::processFile(QFileInfo const &fileInfo) {
     }
     if (!fileHolder.hasError) {
         sameSizeFileHolders.push_back(fileHolder);
+        nextId++;
     }
-    nextId++;
 }
 
 bool QtDupsFinder::equals(QtDupsFinder::FileHolder &fileHolder1, QtDupsFinder::FileHolder &fileHolder2) {
-    static const int BUF_SIZE = 4096 * 1024;
+    static const int BUF_SIZE = 4096;
 
     QFile file1 = fileHolder1.fileInfo.filePath();
     bool ok1 = file1.open(QIODevice::ReadOnly | QIODevice::Unbuffered);

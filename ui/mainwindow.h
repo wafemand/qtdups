@@ -27,7 +27,7 @@ private slots:
     void handleDup(qint64 dupId, QFileInfo fileInfo);
     void handleFileError(QString cause, QFileInfo fileInfo);
     void handleResultReady();
-    void handleItemDoubleClicked(QTreeWidgetItem *item, int column);
+    void handleItemActivated(QTreeWidgetItem *item, int column);
     void handleErrorsButton();
 
     signals:

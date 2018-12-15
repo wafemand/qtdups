@@ -32,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeWidget->header()->setSectionResizeMode(1, QHeaderView::ResizeMode::ResizeToContents);
     ui->treeWidget->header()->setSectionResizeMode(2, QHeaderView::ResizeMode::ResizeToContents);
 
-    connect(ui->treeWidget, &QTreeWidget::itemDoubleClicked, this, &MainWindow::handleItemDoubleClicked);
+    connect(ui->treeWidget, &QTreeWidget::itemActivated, this, &MainWindow::handleItemActivated);
 }
 
 
@@ -42,7 +42,9 @@ void MainWindow::handleStartButton() {
             "Select Directory for Scanning",
             QString(),
             QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
-    runFind(currentRootPath);
+    if (!currentRootPath.isEmpty()) {
+        runFind(currentRootPath);
+    }
 }
 
 
@@ -75,7 +77,7 @@ void MainWindow::handleResultReady() {
 }
 
 
-void MainWindow::handleItemDoubleClicked(QTreeWidgetItem *item, int column) {
+void MainWindow::handleItemActivated(QTreeWidgetItem *item, int column) {
     auto *fileList = &idToFileInfoList[item->data(0, Qt::UserRole).toInt()];
 
     DialogWindow(currentRootPath, fileList, this).exec();
